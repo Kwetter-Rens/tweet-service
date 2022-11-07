@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM ubuntu-latest
 
 EXPOSE 8081
 
