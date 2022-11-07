@@ -1,4 +1,4 @@
-FROM ubuntu-latest
+FROM ubuntu:latest
 
 EXPOSE 8081
 
