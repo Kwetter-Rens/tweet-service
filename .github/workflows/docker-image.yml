@@ -32,9 +32,9 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     
     - name: Build and push to Docker Hub
-        env:
-            DOCKER_USER: ${{secrets.DOCKER_USER}}
-            DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: |
-            docker build -t $DOCKER_USER/tweet-service:latest .
-            docker push $DOCKER_USER/tweet-service:latest
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker build -t $DOCKER_USER/tweet-service:latest .
+        docker push $DOCKER_USER/tweet-service:latest
