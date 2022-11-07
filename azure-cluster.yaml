@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tweetservice-image
-          image: kwettercontainerregistery.azurecr.io/tweet-service:latest
+          image: kwettercr.azurecr.io/tweet-service:latest
           ports:
             - containerPort: 8081
 ---
