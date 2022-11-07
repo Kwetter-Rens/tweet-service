@@ -1,7 +1,7 @@
-FROM ubuntu:latest
+FROM openjdk:17-alpine
 
-EXPOSE 8081
+ARG JAR_FILE=target/*.jar
 
-ADD target/tweet-service.jar tweet-service.jar
+COPY ${JAR_FILE} tweet-service.jar
 
 ENTRYPOINT ["java", "-jar", "tweet-service.jar"]
