@@ -14,12 +14,17 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Build with maven
+      run: mvn clean install
+    
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    
     - name: Build the docker image
       run: docker build . --file Dockerfile --tag renskloosterman/tweet-service:$(date +%s)
       
