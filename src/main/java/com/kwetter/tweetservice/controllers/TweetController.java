@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/tweet")
 public class TweetController {
-    @Autowired
     private final TweetService tweetService;
 
     public TweetController(TweetService tweetService) {
@@ -25,17 +26,22 @@ public class TweetController {
 
     @PostMapping("/post")
     public ResponseEntity<Tweet> postTweet(@RequestBody Tweet tweet) {
-        return this.tweetService.save(tweet);
+        return this.tweetService.postTweet(tweet);
     }
 
-    @GetMapping()
-    public ResponseEntity<List<Tweet>> getAllTweets() {
-        return this.tweetService.getAll();
-    }
+//    @GetMapping()
+//    public ResponseEntity<List<Tweet>> getAllTweets() {
+//        return this.tweetService.getAll();
+//    }
 
     @GetMapping("/{tweetId}")
     public ResponseEntity<Tweet> getTweetById(@PathVariable int tweetId) {
         return this.tweetService.getTweetById(tweetId);
+    }
+
+    @GetMapping("/gettweets/{userIds}")
+    public List<Tweet> getTweetsByUserIds(@PathVariable Collection<int> userIds) {
+        return tweetService.getTweetsByUserIds(userIds);
     }
 
     @GetMapping("/test")
