@@ -32,8 +32,8 @@ public class TweetService {
                 .orElse(new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.NOT_FOUND));
     }
 
-    public List<Tweet> getTweetsByUserIds(Collection<int> userIds) {
-        return tweetRepo.findByUserIdIn(userIds);
+    public List<Tweet> getTweetsByUserIds(List<Long> userIds) {
+        return tweetRepo.findAllByUserIds(userIds);
     }
 
     public ResponseEntity<Tweet> postTweet(Tweet tweet) {

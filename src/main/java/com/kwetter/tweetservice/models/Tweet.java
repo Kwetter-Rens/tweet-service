@@ -20,5 +20,5 @@ public class Tweet {
     private int tweetId;
     private Date creationTime;
     private String content;
-    private int userId;
+    private Long userId;
 }

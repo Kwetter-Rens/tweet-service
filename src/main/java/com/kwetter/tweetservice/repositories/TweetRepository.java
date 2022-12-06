@@ -11,5 +11,6 @@ import java.util.List;
 
 @Repository
 public interface TweetRepository extends JpaRepository<Tweet, Integer> {
-    List<Tweet> findByUserIdIn(Collection<int> userId);
+    @Query("select t from Tweet t where t.userId in :userIds order by t.creationTime desc")
+    List<Tweet> findAllByUserIds(@Param("userIds") List<Long> userIds);
 }

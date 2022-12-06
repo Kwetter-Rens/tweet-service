@@ -40,7 +40,7 @@ public class TweetController {
     }
 
     @GetMapping("/gettweets/{userIds}")
-    public List<Tweet> getTweetsByUserIds(@PathVariable Collection<int> userIds) {
+    public List<Tweet> getTweetsByUserIds(@PathVariable List<Long> userIds) {
         return tweetService.getTweetsByUserIds(userIds);
     }
 
