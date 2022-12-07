@@ -21,10 +21,10 @@ public class TweetService {
     }
 
 
-//    public ResponseEntity<List<Tweet>> getAll() {
-//        List<Tweet> tweets = tweetRepo.findAll();
-//        return new ResponseEntity<>(tweets, new HttpHeaders(), HttpStatus.OK);
-//    }
+    public ResponseEntity<List<Tweet>> getAll() {
+        List<Tweet> tweets = tweetRepo.findAll();
+        return new ResponseEntity<>(tweets, new HttpHeaders(), HttpStatus.OK);
+    }
 
     public ResponseEntity<Tweet> getTweetById(int tweetId) {
         return this.tweetRepo.findById(tweetId)
@@ -33,7 +33,8 @@ public class TweetService {
     }
 
     public List<Tweet> getTweetsByUserIds(List<Long> userIds) {
-        return tweetRepo.findAllByUserIds(userIds);
+//        return tweetRepo.findAllByUserIds(userIds);
+        return null;
     }
 
     public ResponseEntity<Tweet> postTweet(Tweet tweet) {
@@ -41,7 +42,7 @@ public class TweetService {
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
 
-        tweetRepo.save(tweet);
-        return new ResponseEntity<>(tweet, new HttpHeaders(), HttpStatus.CREATED);
+        Tweet postedTweet = tweetRepo.save(tweet);
+        return new ResponseEntity<>(postedTweet, new HttpHeaders(), HttpStatus.CREATED);
     }
 }

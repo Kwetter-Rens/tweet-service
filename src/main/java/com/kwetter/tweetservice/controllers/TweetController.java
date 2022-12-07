@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/tweet")
+@RequestMapping("/api/v1/tweets")
 public class TweetController {
     private final TweetService tweetService;
 
@@ -24,15 +24,15 @@ public class TweetController {
     }
 
 
-    @PostMapping("/post")
+    @PostMapping()
     public ResponseEntity<Tweet> postTweet(@RequestBody Tweet tweet) {
         return this.tweetService.postTweet(tweet);
     }
 
-//    @GetMapping()
-//    public ResponseEntity<List<Tweet>> getAllTweets() {
-//        return this.tweetService.getAll();
-//    }
+    @GetMapping()
+    public ResponseEntity<List<Tweet>> getAllTweets() {
+        return this.tweetService.getAll();
+    }
 
     @GetMapping("/{tweetId}")
     public ResponseEntity<Tweet> getTweetById(@PathVariable int tweetId) {
