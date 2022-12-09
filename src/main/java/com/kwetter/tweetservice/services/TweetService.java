@@ -33,8 +33,8 @@ public class TweetService {
     }
 
     public List<Tweet> getTweetsByUserIds(List<Long> userIds) {
-//        return tweetRepo.findAllByUserIds(userIds);
-        return null;
+        //return tweetRepo.findAllByUserIds(userIds);
+return null;
     }
 
     public ResponseEntity<Tweet> postTweet(Tweet tweet) {

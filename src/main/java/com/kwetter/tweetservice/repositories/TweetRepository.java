@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface TweetRepository extends MongoRepository<Tweet, Integer> {
-
+    //List<Tweet> findAllByUserIds(List<Long> userIds);
 }
