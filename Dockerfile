@@ -1,7 +1,5 @@
-FROM openjdk:17-alpine
+FROM adoptopenjdk/openjdk17:alpine-jre
 
-ARG JAR_FILE=target/*.jar
+COPY target/tweet-service.jar app.jar
 
-COPY ${JAR_FILE} tweet-service.jar
-
-ENTRYPOINT ["java", "-jar", "tweet-service.jar"]
+CMD ["java", "-jar", "app.jar"]
