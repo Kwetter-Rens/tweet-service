@@ -46,6 +46,6 @@ public class TweetController {
 
     @GetMapping("/test")
     public String test() {
-        return "test";
+        return "test from TweetService";
     }
 }
