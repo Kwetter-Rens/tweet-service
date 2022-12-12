@@ -14,8 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
-@RequestMapping("/api/v1/tweets")
+@RequestMapping("/api/v1/tweet")
 public class TweetController {
     private final TweetService tweetService;
 
@@ -40,12 +39,18 @@ public class TweetController {
     }
 
     @GetMapping("/gettweets/{userIds}")
-    public List<Tweet> getTweetsByUserIds(@PathVariable List<Long> userIds) {
+    public List<Tweet> getTweetsByUserIds(@PathVariable List<String> userIds) {
         return tweetService.getTweetsByUserIds(userIds);
     }
 
     @GetMapping("/test")
     public String test() {
         return "test from TweetService";
+    }
+
+    @PutMapping("/{Auth0UserId}")
+    public void deleteUserFromTweets(@PathVariable String Auth0UserId) {
+        System.out.println("Deleting user from tweets: " + Auth0UserId);
+        this.tweetService.deleteUserFromTweets(Auth0UserId);
     }
 }

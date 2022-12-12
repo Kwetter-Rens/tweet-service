@@ -3,12 +3,12 @@ package com.kwetter.tweetservice.services;
 import com.kwetter.tweetservice.models.Tweet;
 import com.kwetter.tweetservice.repositories.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -32,17 +32,23 @@ public class TweetService {
                 .orElse(new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.NOT_FOUND));
     }
 
-    public List<Tweet> getTweetsByUserIds(List<Long> userIds) {
-        //return tweetRepo.findAllByUserIds(userIds);
-return null;
+    public List<Tweet> getTweetsByUserIds(List<String> userIds) {
+        return tweetRepo.findAllByUserIdIn(userIds);
     }
 
     public ResponseEntity<Tweet> postTweet(Tweet tweet) {
         if(tweet.getContent().isBlank()) {
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
-
+        System.out.println("Posting tweet: " + tweet.toString());
         Tweet postedTweet = tweetRepo.save(tweet);
         return new ResponseEntity<>(postedTweet, new HttpHeaders(), HttpStatus.CREATED);
+    }
+
+    public void deleteUserFromTweets(String Auth0userId) {
+        Update update = new Update();
+        update.set("username", "deleted");
+        update.unset("profilePicture");
+        tweetRepo.updateTweetsByUserId(Auth0userId, update);
     }
 }
