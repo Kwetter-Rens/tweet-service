@@ -50,6 +50,7 @@ jobs:
           push: true
           tags: renskloosterman/kwetter-tweet:${{ github.sha }}
           file: ./Dockerfile
+          path: target
 
   deploy:
     runs-on: ubuntu-latest
