@@ -65,5 +65,5 @@ jobs:
         with:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
-            az containerapp registry set -n kwetter-tweet -g kwetter-resource-group --server docker.io --username  ${{ secrets.KWETTERTWEET_REGISTRY_USERNAME }} --password ${{ secrets.KWETTERTWEET_REGISTRY_PASSWORD }}
-            az containerapp update -n kwetter-tweet -g kwetter-resource-group --image renskloosterman/kwetter-tweet:${{ github.sha}}
+            az containerapp registry set -n kwetter-tweet -g kwetter-resource-group --server docker.io --username  ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_PASSWORD }}
+            az containerapp update -n kwetter-tweet -g kwetter-resource-group --image renskloosterman/tweet-service:${{ github.sha}}
