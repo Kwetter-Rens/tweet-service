@@ -1,3 +1,3 @@
-tag="${{github.sha}}"
+tag="$GITHUB_SHA"
 echo "$tag"
-echo "${{secrets.KWETTERTWEET_REGISTRY_USERNAME}}"
+echo "$username"
