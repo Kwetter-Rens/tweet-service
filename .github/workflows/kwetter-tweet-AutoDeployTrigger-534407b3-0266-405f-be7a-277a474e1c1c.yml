@@ -35,7 +35,7 @@ jobs:
         run: ls
 
       - name: Docker build
-        run: ./scrips/docker-build.sh
+        run: ./scripts/docker-build.sh
 
   deploy:
     runs-on: ubuntu-latest
