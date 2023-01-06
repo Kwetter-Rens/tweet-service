@@ -1,5 +1,8 @@
 name: Trigger auto deployment for kwetter-tweet
 
+env:
+  username: ${{secrets.KWETTERTWEET_REGISTRY_USERNAME}}
+  password: ${{secrets.KWETTERTWEET_REGISTRY_PASSWORD}}
 # When this action will be executed
 on:
   # Automatically trigger it when detected changes in repo
