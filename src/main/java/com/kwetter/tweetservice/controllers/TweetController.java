@@ -45,7 +45,7 @@ public class TweetController {
 
     @GetMapping("/test")
     public String test() {
-        return "test from TweetService";
+        return "test from TweetService NOW WITH CD!";
     }
 
     @PutMapping("/{Auth0UserId}")
