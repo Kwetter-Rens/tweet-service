@@ -1,4 +1,4 @@
-tag="$GITHUB_SHA:0:8"
+tag="${GITHUB_SHA:0:8}"
 echo "$tag"
 
 #inloggen docker io repo
