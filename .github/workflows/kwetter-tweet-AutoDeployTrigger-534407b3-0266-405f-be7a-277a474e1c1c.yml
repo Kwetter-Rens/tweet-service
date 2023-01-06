@@ -49,7 +49,7 @@ jobs:
         with:
           push: true
           tags: renskloosterman/kwetter-tweet:${{ github.sha }}
-          file: Dockerfile
+          file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
