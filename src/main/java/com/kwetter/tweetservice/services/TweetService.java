@@ -2,6 +2,7 @@ package com.kwetter.tweetservice.services;
 
 import com.kwetter.tweetservice.models.Tweet;
 import com.kwetter.tweetservice.repositories.TweetRepository;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +16,8 @@ import java.util.List;
 public class TweetService {
     @Autowired
     private final TweetRepository tweetRepo;
+
+    final static Logger logger = LoggerFactory.getLogger(TweetService.class);
 
     public TweetService(TweetRepository tweetRepo) {
         this.tweetRepo = tweetRepo;
@@ -37,10 +40,10 @@ public class TweetService {
     }
 
     public ResponseEntity<Tweet> postTweet(Tweet tweet) {
-        if(tweet.getContent().isBlank()) {
+        if(tweet.getContent() != null && !tweet.getContent().isEmpty()) {
             return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
-        System.out.println("Posting tweet: " + tweet.toString());
+        logger.info("Posting tweet: " + tweet);
         Tweet postedTweet = tweetRepo.save(tweet);
         return new ResponseEntity<>(postedTweet, new HttpHeaders(), HttpStatus.CREATED);
     }
@@ -50,5 +53,11 @@ public class TweetService {
         update.set("username", "deleted");
         update.unset("profilePicture");
         tweetRepo.updateTweetsByUserId(Auth0userId, update);
+    }
+
+    public String test() {
+        String test = "test from TweetService NOW WITH CD!";
+        logger.info(test);
+        return test;
     }
 }
